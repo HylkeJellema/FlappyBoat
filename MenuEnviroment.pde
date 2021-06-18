@@ -1,9 +1,10 @@
 class MenuEnviroment {
 
-  PVector buttonPos, bannerPos, bannerSize;
+  PVector buttonPos;
   int buttonSize; // size of the start button 
   color buttonColor, hoverColor; // Colors going with the button
   boolean hoverOver; // boolean activiting the next phase of the game
+  PImage CoverImage;
 
 
   Flock flock;
@@ -12,24 +13,23 @@ class MenuEnviroment {
 
   MenuEnviroment(MainEnviroment mainRef) {
     this.mainRef = mainRef;
-     //Video related
+    //Video related
     backgroundWater = new Movie(mainRef.getApp(), "water.mp4");
     backgroundWater.loop();
 
     //Button related 
-    buttonPos = new PVector(width/2, height/2);
-    bannerPos = new PVector(width/2, height/5);
-    bannerSize = new PVector(600,200);
-    
+    buttonPos = new PVector(width/2, height * 3/4);
     buttonSize = 100;
     buttonColor = color(32, 160, 232);
     hoverColor = color(52, 86, 105);
     hoverOver = false;
+    
     //Flocking related
     flock = new Flock(); 
     for (int i = 0; i < 150; i++) {
       Boid b = new Boid(random(width), random(height));
       flock.addBoid(b);
+      CoverImage = loadImage("Coverimage.png");
     }
   }
 
@@ -44,9 +44,10 @@ class MenuEnviroment {
     }
   }
 
-  void render() {
+  void render( ) {
     image(backgroundWater, 0, 0, width, height );// drawing video and resizing it
-    flock.run();
+    image(CoverImage, 0, 0);
+      flock.run();
 
     if (hoverOver) {
       fill(hoverColor);
@@ -57,11 +58,5 @@ class MenuEnviroment {
     fill(0);
     textSize(12);
     text("Press to start", buttonPos.x-40, buttonPos.y);
-    fill(buttonColor);
-    rectMode(CENTER);
-    rect(bannerPos.x, bannerPos.y, bannerSize.x,bannerSize.y);
-    fill(0);
-    textSize(20);
-    text("Flappy Boat made my Hylke Jellema and Marc Harinck", bannerPos.x, bannerPos.y);
   }
 }

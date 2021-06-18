@@ -1,16 +1,15 @@
-class Obstruction{
-float posx, posy, size;
+class Obstruction {
+  float posx, posy;
 
-  
-  Obstruction(float tempX, float tempY){   
-  tempX = posx;
-  tempY = posy;
-  size = 150;
+  Obstruction(float tempX, float tempY) {
+    
+    tempY = posy;
+    tempX = posx;
   }
-  
-  void render(){
+
+  void render() {
     noStroke();
-    fill(0,0);
-    ellipse(posx, posy, size, size);
+    fill(0, 0);
+    ellipse(posx, posy, 150, 150);
   }
-}
+}// ipv muis 
