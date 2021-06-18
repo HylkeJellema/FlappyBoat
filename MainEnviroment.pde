@@ -1,16 +1,30 @@
 class MainEnviroment{
 
-    int state; //shows state of game // 1=menu 2=game 3=gameover 4=highscores
+    int state; //shows state of game 
+    int MENU_PAGE = 1; int GAME_PAGE = 2; int SCORE_PAGE = 3; int GAMEOVER_PAGE = 4; //stages
+    MenuEnviroment menu;
+    GameEnviroment game;
+    
 
     MainEnviroment(){
-        state = 1;
+        state = MENU_PAGE;
+        menu = new MenuEnviroment(this);
+        game = new GameEnviroment(this);
     }
 
-    void update(){
+    void update(PVector mouse, PVector screenSize){
+        switch (state) {
 
-    }
+            case MENU_PAGE:
+            menu.update(mouse, screenSize);
+            menu.render();
+            break;
 
-    void render(){
+            case GAME_PAGE:
+            game.update(mouse, screenSize);
+            game.render();
+            break;
 
+        }
     }
 }
