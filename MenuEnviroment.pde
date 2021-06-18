@@ -31,7 +31,7 @@ buttonPos = new PVector(width/2, height/2);
   }
 
   void update(PVector mouse, PVector screenSize) {
-    if (dist(mouse.x, mouse.y, buttonPos.x, buttonPos.y) < size) {
+    if (dist(mouse.x, mouse.y, buttonPosx, buttonPosy) < size/2) {
       hoverOver = true;
     } else {
       hoverOver = false;

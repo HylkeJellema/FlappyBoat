@@ -21,10 +21,16 @@ public class FlappyBoat extends PApplet {
 
 
 MainEnviroment mainEnviroment;
+Flock flock;
 
 public void setup() {
     
     mainEnviroment = new MainEnviroment(this);
+    flock = new Flock();
+     for(int i = 0; i < 150; i++){
+      Boid b = new Boid(random(width), random(height));
+      flock.addBoid(b);
+    }
 
 }
 
@@ -33,194 +39,31 @@ public void draw() {
         new PVector(mouseX,mouseY), //passes mouse cords
         new PVector(width,height)   //passes screen size
     );
+   flock.run();
+    
 }
 
 public void movieEvent(Movie m) {
     m.read();
 }
-class Flock{
-    ArrayList<Boid> boids;
-
-  Flock() {
-    boids = new ArrayList<Boid>(); 
-  }
-
-  public void run() {
-    for (Boid b : boids) {
-      b.run(boids);  
-    }
-  }
-
-  public void addBoid(Boid b) {
-    boids.add(b);
-  }
-  
-}
-class GameEnviroment{
-     
-
-    MainEnviroment mainRef;
-
-    GameEnviroment(MainEnviroment mainRef){
-        this.mainRef = mainRef;
-    }
-
-
-    public void update(PVector mouse, PVector screenSize){
- 
-    }
-
-    public void render(){
-       PImage img;
-       imageMode(CENTER);
-     img = loadImage("Optimist.png");
-     image(img, width/2, height/2,  300,414);
- 
-    }
-}
-class GameOverEnviroment{
-
-    GameOverEnviroment(){
-        
-    }
-
-    public void update(PVector mouse, PVector screenSize){
- 
-    }
-
-    public void render(){
-
-    }
-}
-class HighScoreEnviroment{
-
-    HighScoreEnviroment(){
-        
-    }
-
-    public void update(PVector mouse, PVector screenSize){
- 
-    }
-
-    public void render(){
-
-    }
-}
-class MainEnviroment{
-
-    int state; //shows state of game 
-    final int MENU_PAGE = 1; //stages
-    final int GAME_PAGE = 2; 
-    final int SCORE_PAGE = 3; 
-    final int GAMEOVER_PAGE = 4;
-    MenuEnviroment menu;
-    GameEnviroment game;
-    PApplet app;
-    
-
-    MainEnviroment(PApplet app){
-        this.app=app;
-        state = MENU_PAGE;
-        menu = new MenuEnviroment(this); //passing main screen as object to states can be changed.
-        game = new GameEnviroment(this);
-    }
-
-    public void update(PVector mouse, PVector screenSize){
-        switch (state) { //all states and there methods
-
-            case MENU_PAGE:
-            menu.update(mouse, screenSize);
-            menu.render();
-            break;
-
-            case GAME_PAGE:
-            game.update(mouse, screenSize);
-            game.render();
-            break;
-
-        }
-    }
-
-    public void setState(int i){
-        state = i;
-    }
-
-    public PApplet getApp(){
-        return app;
-    }
-}
-class MenuEnviroment {
-
-  int buttonPosx, buttonPosy, size; // position and size of the start button 
-  int buttonColor, hoverColor; // Colors going with the button
-  boolean hoverOver; // boolean activiting the next phase of the game
-
-
-  Flock flock;
-  MainEnviroment mainRef;
-  Movie backgroundWater;
-
-  MenuEnviroment(MainEnviroment mainRef) {
-    //Video related
-    this.mainRef = mainRef;
-    backgroundWater = new Movie(mainRef.getApp(), "water.mp4");
-    backgroundWater.loop();
-    
-    //Button related 
-    buttonPosx = width/2;
-    buttonPosy = height/2;
-    size = 100;
-    buttonColor = color(32, 160, 232);
-    hoverColor = color(52, 86, 105);
-    hoverOver = false;
-    //Flocking related
-    
-    
-  }
-
-  public void update(PVector mouse, PVector screenSize) {
-    if (dist(mouse.x, mouse.y, buttonPosx, buttonPosy) < size) {
-      hoverOver = true;
-    } else {
-      hoverOver = false;
-    }
-    if (hoverOver && mousePressed) {
-      mainEnviroment.state = 2;
-    }
-  }
-
-  public void render() {
-    image(backgroundWater, 0, 0, 1400, 800 );// drawing video and resizing it
-
-    if (hoverOver) {
-      fill(hoverColor);
-    } else {
-      fill(buttonColor);
-    }
-    circle(buttonPosx, buttonPosy, size);
-    fill(0);
-    text("Press to start", buttonPosx-35, buttonPosy);
-  }
-}
-
-class Obstruction{
   class Boid {
   Obstruction wall;
 
   PVector position;
   PVector velocity;
   PVector acceleration;
-  float size;
+  float sizex, sizey;
   float maxforce;    
   float maxvelocity;    
   PVector objPos;
 
   Boid(float x, float y) {
     acceleration = new PVector(0, 0);
-    velocity = new PVector(random(-1, 1), random(-1, 1));
+    velocity = new PVector(random(-2, 2), random(-2, 2));
     position = new PVector(x, y);
-    objPos = new PVector(150, 100);
-    size = 6.0f; //
+    objPos = new PVector(width/2, height/2);
+    sizex = 10.0f; 
+    sizey = 6.0f;
     maxvelocity = 2;
     maxforce = 0.05f;
     wall= new Obstruction(objPos.x, objPos.y);
@@ -276,8 +119,8 @@ class Obstruction{
 
   public void render() {
     fill(255, 0, 0);
-    ellipse(position.x, position.y, size, size);
-    wall.render();
+    ellipse(position.x, position.y, sizex, sizey);
+ 
   }
 
 
@@ -394,13 +237,191 @@ class Obstruction{
     }
   }
   public void borders() {
-    if (position.x < 2*size) velocity.x += velocity.x * -1;
-    if (position.y < 2*size) velocity.y += velocity.y * -1;
-    if (position.x > width - 2*size) velocity.x -= velocity.x ;
-    if (position.y > height - 2*size) velocity.y -= velocity.y;
+    if (position.x < 2*sizex) velocity.x += velocity.x * -1;
+    if (position.y < 2*sizey) velocity.y += velocity.y * -1;
+    if (position.x > width - 2*sizex) velocity.x -= velocity.x ;
+    if (position.y > height - 2*sizey) velocity.y -= velocity.y;
   }
 }
   
+class Flock{
+    ArrayList<Boid> boids;
+
+  Flock() {
+    boids = new ArrayList<Boid>(); 
+  }
+
+  public void run() {
+    for (Boid b : boids) {
+      b.run(boids);  
+    }
+  }
+
+  public void addBoid(Boid b) {
+    boids.add(b);
+  }
+  
+}
+class GameEnviroment{
+     PImage img;
+
+    MainEnviroment mainRef;
+
+    GameEnviroment(MainEnviroment mainRef){
+        this.mainRef = mainRef;
+          img = loadImage("Optimist.png");
+    }
+
+
+    public void update(PVector mouse, PVector screenSize){
+ 
+    }
+
+    public void render(){
+       
+       imageMode(CENTER);
+   
+     image(img, width/2, height/2,  300,414);
+ 
+    }
+}
+class GameOverEnviroment{
+
+    GameOverEnviroment(){
+        
+    }
+
+    public void update(PVector mouse, PVector screenSize){
+ 
+    }
+
+    public void render(){
+
+    }
+}
+class HighScoreEnviroment{
+
+    HighScoreEnviroment(){
+        
+    }
+
+    public void update(PVector mouse, PVector screenSize){
+ 
+    }
+
+    public void render(){
+
+    }
+}
+class MainEnviroment{
+
+    int state; //shows state of game 
+    final int MENU_PAGE = 1; //stages
+    final int GAME_PAGE = 2; 
+    final int SCORE_PAGE = 3; 
+    final int GAMEOVER_PAGE = 4;
+    MenuEnviroment menu;
+    GameEnviroment game;
+    PApplet app;
+    
+
+    MainEnviroment(PApplet app){
+        this.app=app;
+        state = MENU_PAGE;
+        menu = new MenuEnviroment(this); //passing main screen as object to states can be changed.
+        game = new GameEnviroment(this);
+    }
+
+    public void update(PVector mouse, PVector screenSize){
+        switch (state) { //all states and there methods
+
+            case MENU_PAGE:
+            menu.update(mouse, screenSize);
+            menu.render();
+            break;
+
+            case GAME_PAGE:
+            game.update(mouse, screenSize);
+            game.render();
+            break;
+
+        }
+    }
+
+    public void setState(int i){
+        state = i;
+    }
+
+    public PApplet getApp(){
+        return app;
+    }
+}
+class MenuEnviroment {
+
+  int buttonPosx, buttonPosy, size; // position and size of the start button 
+  int buttonColor, hoverColor; // Colors going with the button
+  boolean hoverOver; // boolean activiting the next phase of the game
+
+
+  Flock flock;
+  MainEnviroment mainRef;
+  Movie backgroundWater;
+
+  MenuEnviroment(MainEnviroment mainRef) {
+    //Video related
+    this.mainRef = mainRef;
+    backgroundWater = new Movie(mainRef.getApp(), "water.mp4");
+    backgroundWater.loop();
+    
+    //Button related 
+    buttonPosx = width/2;
+    buttonPosy = height/2;
+    size = 100;
+    buttonColor = color(32, 160, 232);
+    hoverColor = color(52, 86, 105);
+    hoverOver = false;
+    
+    
+  }
+
+  public void update(PVector mouse, PVector screenSize) {
+    if (dist(mouse.x, mouse.y, buttonPosx, buttonPosy) < size/2) {
+      hoverOver = true;
+    } else {
+      hoverOver = false;
+    }
+    if (hoverOver && mousePressed) {
+      mainEnviroment.state = 2;
+    }
+  }
+
+  public void render() {
+    image(backgroundWater, 0, 0, 1400, 800 );// drawing video and resizing it
+
+    if (hoverOver) {
+      fill(hoverColor);
+    } else {
+      fill(buttonColor);
+    }
+    circle(buttonPosx, buttonPosy, size);
+    fill(0);
+    text("Press to start", buttonPosx-35, buttonPosy);
+  }
+}
+class Obstruction{
+  float posX;
+  float posY;
+  
+  Obstruction(float tempX, float tempY){   
+    posX = tempX;
+    posY = tempY;
+  }
+  
+  public void render(){
+    noStroke();
+    fill(0,0);
+    ellipse(posX, posY, 100, 100);
+  }
 }
   public void settings() {  size(1400,800); }
   static public void main(String[] passedArgs) {
