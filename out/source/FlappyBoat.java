@@ -24,7 +24,8 @@ MainEnviroment mainEnviroment;
 
 public void setup() {
     
-    mainEnviroment = new MainEnviroment();
+    mainEnviroment = new MainEnviroment(this);
+
 }
 
 public void draw() {
@@ -32,6 +33,10 @@ public void draw() {
         new PVector(mouseX,mouseY), //passes mouse cords
         new PVector(width,height)   //passes screen size
     );
+}
+
+public void movieEvent(Movie m) {
+    m.read();
 }
 class GameEnviroment{
 
@@ -86,9 +91,11 @@ class MainEnviroment{
     final int GAMEOVER_PAGE = 4;
     MenuEnviroment menu;
     GameEnviroment game;
+    PApplet app;
     
 
-    MainEnviroment(){
+    MainEnviroment(PApplet app){
+        this.app=app;
         state = MENU_PAGE;
         menu = new MenuEnviroment(this); //passing main screen as object to states can be changed.
         game = new GameEnviroment(this);
@@ -110,8 +117,12 @@ class MainEnviroment{
         }
     }
 
-    public void setState(int state){
-        this.state = state;
+    public void setState(int i){
+        state = i;
+    }
+
+    public PApplet getApp(){
+        return app;
     }
 }
 class MenuEnviroment{
@@ -121,7 +132,7 @@ class MenuEnviroment{
 
     MenuEnviroment(MainEnviroment mainRef){
         this.mainRef = mainRef;
-        backgroundWater = new Movie(this, "water.mp4");
+        backgroundWater = new Movie(mainRef.getApp(), "water.mp4");
         backgroundWater.loop();
     }
 
@@ -133,9 +144,6 @@ class MenuEnviroment{
         image(backgroundWater,0,0);
     }
 
-    public void movieEvent(Movie m) {
-        m.read();
-    }
 }
   public void settings() {  size(1400,800); }
   static public void main(String[] passedArgs) {

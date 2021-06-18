@@ -5,7 +5,7 @@ class MenuEnviroment{
 
     MenuEnviroment(MainEnviroment mainRef){
         this.mainRef = mainRef;
-        backgroundWater = new Movie(this, "water.mp4");
+        backgroundWater = new Movie(mainRef.getApp(), "water.mp4");
         backgroundWater.loop();
     }
 
@@ -17,7 +17,4 @@ class MenuEnviroment{
         image(backgroundWater,0,0);
     }
 
-    void movieEvent(Movie m) {
-        m.read();
-    }
 }

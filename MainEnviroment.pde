@@ -7,9 +7,11 @@ class MainEnviroment{
     final int GAMEOVER_PAGE = 4;
     MenuEnviroment menu;
     GameEnviroment game;
+    PApplet app;
     
 
-    MainEnviroment(){
+    MainEnviroment(PApplet app){
+        this.app=app;
         state = MENU_PAGE;
         menu = new MenuEnviroment(this); //passing main screen as object to states can be changed.
         game = new GameEnviroment(this);
@@ -33,5 +35,9 @@ class MainEnviroment{
 
     void setState(int i){
         state = i;
+    }
+
+    PApplet getApp(){
+        return app;
     }
 }
