@@ -1,15 +1,16 @@
 class Obstruction{
-  float posX;
-  float posY;
+float posx, posy, size;
+
   
   Obstruction(float tempX, float tempY){   
-    posX = tempX;
-    posY = tempY;
+  tempX = posx;
+  tempY = posy;
+  size = 150;
   }
   
   void render(){
     noStroke();
     fill(0,0);
-    ellipse(posX, posY, 150, 150);
+    ellipse(posx, posy, size, size);
   }
 }

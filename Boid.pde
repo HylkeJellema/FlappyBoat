@@ -16,8 +16,8 @@
     objPos = new PVector(width/2, height/2);
     sizex = 10.0; 
     sizey = 6.0;
-    maxvelocity = 2;
-    maxforce = 0.05;
+    maxvelocity = 3;
+    maxforce = 0.08;
     wall= new Obstruction(objPos.x, objPos.y);
   }
 
@@ -70,7 +70,7 @@
   }
 
   void render() {
-    fill(255, 0, 0);
+    fill(160,198,236);
     ellipse(position.x, position.y, sizex, sizey);
     triangle(position.x-5, position.y, position.x-10, position.y - 5, position.x-10, position.y + 5);
  

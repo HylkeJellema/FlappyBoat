@@ -17,7 +17,7 @@ class GameEnviroment{
        
        imageMode(CENTER);
    
-     image(img, width/2, height/2,  300,414);
+    // image(img, width/2, height/2,  300,414);
  
     }
 }
