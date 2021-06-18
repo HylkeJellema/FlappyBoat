@@ -6,6 +6,7 @@ class MenuEnviroment{
     MenuEnviroment(MainEnviroment mainRef){
         this.mainRef = mainRef;
         backgroundWater = new Movie(this, "water.mp4");
+        backgroundWater.loop();
     }
 
     void update(PVector mouse, PVector screenSize){

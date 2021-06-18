@@ -30,4 +30,8 @@ class MainEnviroment{
 
         }
     }
+
+    void setState(int i){
+        state = i;
+    }
 }

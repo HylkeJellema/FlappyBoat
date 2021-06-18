@@ -20,7 +20,7 @@ public class FlappyBoat extends PApplet {
 // Sources and other information disclosed in README.md
 
 
-private MainEnviroment mainEnviroment;
+MainEnviroment mainEnviroment;
 
 public void setup() {
     
@@ -109,6 +109,10 @@ class MainEnviroment{
 
         }
     }
+
+    public void setState(int state){
+        this.state = state;
+    }
 }
 class MenuEnviroment{
 
@@ -118,6 +122,7 @@ class MenuEnviroment{
     MenuEnviroment(MainEnviroment mainRef){
         this.mainRef = mainRef;
         backgroundWater = new Movie(this, "water.mp4");
+        backgroundWater.loop();
     }
 
     public void update(PVector mouse, PVector screenSize){
