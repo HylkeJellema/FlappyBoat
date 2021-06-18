@@ -1,15 +1,15 @@
 class Obstruction {
   float posx, posy;
 
-  Obstruction(float tempX, float tempY) {
+  Obstruction(PVector mouse) {
     
     tempY = posy;
     tempX = posx;
   }
 
-  void render() {
+  void render(PVector mouse) {
     noStroke();
     fill(0, 0);
-    ellipse(posx, posy, 150, 150);
+    ellipse(mouse.x,mouse.y, 150, 150);
   }
 }// ipv muis 

@@ -34,6 +34,7 @@ class MenuEnviroment {
   }
 
   void update(PVector mouse, PVector screenSize) {
+    obstruction.render(mouse);
     if (dist(mouse.x, mouse.y, buttonPos.x, buttonPos.y) < buttonSize/2) {
       hoverOver = true;
     } else {
@@ -42,12 +43,13 @@ class MenuEnviroment {
     if (hoverOver && mousePressed) {
       mainRef.setState(2);
     }
+      flock.run(mouse);
   }
 
   void render( ) {
     image(backgroundWater, 0, 0, width, height );// drawing video and resizing it
     image(CoverImage, 0, 0);
-      flock.run();
+    
 
     if (hoverOver) {
       fill(hoverColor);
