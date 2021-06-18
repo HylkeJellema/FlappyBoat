@@ -1,6 +1,7 @@
 // FlappyBoat by Hylke Jellema and Marc Harinck
 // Sources and other information disclosed in README.md
 
+import processing.video.*;
 MainEnviroment mainEnviroment;
 
 void setup() {
@@ -13,5 +14,4 @@ void draw() {
         new PVector(mouseX,mouseY), //passes mouse cords
         new PVector(width,height)   //passes screen size
     );
-    mainEnviroment.render();
 }

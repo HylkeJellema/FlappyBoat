@@ -3,6 +3,8 @@ import processing.data.*;
 import processing.event.*; 
 import processing.opengl.*; 
 
+import processing.video.*; 
+
 import java.util.HashMap; 
 import java.util.ArrayList; 
 import java.io.File; 
@@ -17,7 +19,8 @@ public class FlappyBoat extends PApplet {
 // FlappyBoat by Hylke Jellema and Marc Harinck
 // Sources and other information disclosed in README.md
 
-MainEnviroment mainEnviroment;
+
+private MainEnviroment mainEnviroment;
 
 public void setup() {
     
@@ -29,12 +32,13 @@ public void draw() {
         new PVector(mouseX,mouseY), //passes mouse cords
         new PVector(width,height)   //passes screen size
     );
-    mainEnviroment.render();
 }
 class GameEnviroment{
 
-    GameEnviroment(){
-        
+    MainEnviroment mainRef;
+
+    GameEnviroment(MainEnviroment mainRef){
+        this.mainRef = mainRef;
     }
 
     public void update(PVector mouse, PVector screenSize){
@@ -76,27 +80,30 @@ class HighScoreEnviroment{
 class MainEnviroment{
 
     int state; //shows state of game 
-    int MENU_PAGE = 1; int GAME_PAGE = 2; int SCORE_PAGE = 3; int GAMEOVER_PAGE = 4; //stages
+    final int MENU_PAGE = 1; //stages
+    final int GAME_PAGE = 2; 
+    final int SCORE_PAGE = 3; 
+    final int GAMEOVER_PAGE = 4;
     MenuEnviroment menu;
     GameEnviroment game;
     
 
     MainEnviroment(){
         state = MENU_PAGE;
-        menu = new MenuEnviroment();
-        game = new GameEnviroment();
+        menu = new MenuEnviroment(this); //passing main screen as object to states can be changed.
+        game = new GameEnviroment(this);
     }
 
     public void update(PVector mouse, PVector screenSize){
-        switch (state) {
+        switch (state) { //all states and there methods
 
             case MENU_PAGE:
-            menu.update(this, mouse, screenSize);
+            menu.update(mouse, screenSize);
             menu.render();
             break;
 
             case GAME_PAGE:
-            game.update(this, mouse, screenSize);
+            game.update(mouse, screenSize);
             game.render();
             break;
 
@@ -105,16 +112,24 @@ class MainEnviroment{
 }
 class MenuEnviroment{
 
-    MenuEnviroment(){
-        
+    MainEnviroment mainRef;
+    Movie backgroundWater;
+
+    MenuEnviroment(MainEnviroment mainRef){
+        this.mainRef = mainRef;
+        backgroundWater = new Movie(this, "water.mp4");
     }
 
     public void update(PVector mouse, PVector screenSize){
- 
+        
     }
 
     public void render(){
+        image(backgroundWater,0,0);
+    }
 
+    public void movieEvent(Movie m) {
+        m.read();
     }
 }
   public void settings() {  size(1400,800); }
