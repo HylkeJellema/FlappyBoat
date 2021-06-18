@@ -10,6 +10,6 @@ class Obstruction{
   void render(){
     noStroke();
     fill(0,0);
-    ellipse(posX, posY, 100, 100);
+    ellipse(posX, posY, 150, 150);
   }
 }

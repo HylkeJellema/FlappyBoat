@@ -72,6 +72,7 @@
   void render() {
     fill(255, 0, 0);
     ellipse(position.x, position.y, sizex, sizey);
+    triangle(position.x-5, position.y, position.x-10, position.y - 5, position.x-10, position.y + 5);
  
   }
 
