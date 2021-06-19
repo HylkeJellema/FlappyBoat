@@ -5,14 +5,15 @@ class PirateShip{
     MassSpringDamper MSD;
     int state = 1;
     float jumpVelocity=8;
-    float minAngle = - 80;
+    float minAngle = - 50;
     float maxAngle = 20;
     float gravity = 0.4;
-    float velocity = 0;
-    float angle = 0;
     float xPos = 700;
     float size = 100;
     float waterHeight;
+    float maxVelocity = -7;
+    float velocity;
+    float angle;
 
     PirateShip(float waterHeight){
         boat = loadImage("pirateShip.png");
@@ -30,24 +31,30 @@ class PirateShip{
 
         switch (state) {
             case 1 :
-                velocity -= gravity;
+                if (velocity > -10){
+                    velocity -= gravity;
+                }
             break;	
 
             case 2 :
                 MSD.calculate();
                 velocity = MSD.getVelocity(); 
-                println(MSD.getVelocity());
             break;	
         }
-
+        if(velocity <= 0) {
+            angle = velocity / jumpVelocity * minAngle;
+        }else{
+            angle = velocity / maxVelocity * maxAngle;
+        }
         xPos-=velocity;  
     }
 
     void render(){
         pushMatrix();
         imageMode(CENTER);
-        rotate(angle);
-        image(boat, width/4, xPos, size,size);
+        translate(width/4, xPos);
+        rotate(radians(angle));
+        image(boat, 0, 0, size,size);
         popMatrix();
     }
 

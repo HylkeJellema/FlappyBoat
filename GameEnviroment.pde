@@ -4,7 +4,7 @@ class GameEnviroment {
     PirateShip ship;
     GameWater water;
     color skyColor = color(135, 206, 235);
-    float waterHeight = 700;
+    float waterHeight = 650;
 
     GameEnviroment(MainEnviroment mainRef){
         this.mainRef = mainRef;
@@ -18,6 +18,7 @@ class GameEnviroment {
 
   void render() {
         background(skyColor);
+        
         ship.render();
         water.render();
   }

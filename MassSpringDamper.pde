@@ -2,24 +2,17 @@ class MassSpringDamper{
 
         float springConstant;
         float dampingConstant;
-        float incomingVelocity;
-        float followingTorque;
-        boolean newEntry;
         boolean active = false;
         float mass;
         float velocity;
-        float totalForce;
-        float dt = 0.016;
+        float dt;
         float position;
         
     MassSpringDamper() {
-        springConstant = 15;
-        dampingConstant = 0.5;
-        incomingVelocity = 0;
-        followingTorque = 0;
-        newEntry = false;
-        mass = 1; 
-        position = 0;
+        springConstant = 100;
+        dampingConstant = 5;
+        mass = 2; 
+        dt= 1/frameRate;
     }
     
     void calculate() { //MSD mathphysics
@@ -35,7 +28,7 @@ class MassSpringDamper{
         return velocity;
     }
 
-    void setIncomingVelocity(float velocity){ //setting velocity and torque
+    void setIncomingVelocity(float velocity){ //setting velocity
         this.velocity = velocity;
     } 
     boolean isActive(){
