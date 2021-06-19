@@ -10,12 +10,12 @@ class GameEnviroment{
     }
 
 
-    void update(PVector mouse, PVector screenSize){
+    void update(PVector mouse){
         ship.update();
     }
 
     void render(){
-       
+        background(100, 100, 200);
         imageMode(CENTER);
         ship.render();
  

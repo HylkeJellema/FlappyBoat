@@ -8,18 +8,11 @@ MainEnviroment mainEnviroment;
 void setup() {
     size(1400,800);
     mainEnviroment = new MainEnviroment(this);
-  
-
-
 }
 
 void draw() {
-    mainEnviroment.update(
-        new PVector(mouseX,mouseY), //passes mouse cords
-        new PVector(width,height)   //passes screen size
-    );
-   
-    
+    mainEnviroment.update(new PVector(mouseX,mouseY)); //passes mouse cords
+      
 }
 
 void movieEvent(Movie m) {

@@ -1,5 +1,5 @@
   class Boid {
-  Obstruction wall;
+  //Obstruction wall;
 
   PVector position;
   PVector velocity;
@@ -18,7 +18,7 @@
     sizey = 6.0;
     maxvelocity = 3;
     maxforce = 0.08;
-    wall = new Obstruction(objPos.x, objPos.y);
+ //   wall = new Obstruction(objPos.x, objPos.y);
   }
 
   void run(ArrayList<Boid> boids) {

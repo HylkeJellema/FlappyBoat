@@ -3,9 +3,8 @@ class MenuEnviroment {
   PVector buttonPos;
   int buttonSize; // size of the start button 
   color buttonColor, hoverColor; // Colors going with the button
-  boolean hoverOver; // boolean activiting the next phase of the game
+  boolean hoverOver; // boolean activating the next phase of the game
   PImage CoverImage;
-
 
   Flock flock;
   MainEnviroment mainRef;
@@ -33,8 +32,8 @@ class MenuEnviroment {
     }
   }
 
-  void update(PVector mouse, PVector screenSize) {
-    obstruction.render(mouse);
+  void update(PVector mouse) {
+  //  obstruction.render(mouse);
     if (dist(mouse.x, mouse.y, buttonPos.x, buttonPos.y) < buttonSize/2) {
       hoverOver = true;
     } else {

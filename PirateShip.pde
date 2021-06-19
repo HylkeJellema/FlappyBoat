@@ -8,7 +8,7 @@ class PirateShip{
     }
 
 
-    void update(PVector mouse, PVector screenSize){
+    void update(){
  
     }
 

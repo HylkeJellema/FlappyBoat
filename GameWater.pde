@@ -1,18 +1,21 @@
-class Lines{
+class GameWater{
 
     float yoff;
     float location;
+    float waterLineHeight;
 
-    Lines(float index) {
+    GameWater(float index) {
         location = index+1;
         yoff = index/100;
     }
 
-    void display() {        
-        float n = noise(yoff) * 200;
+    void update() {        
+        float waterLineHeight = noise(yoff) * 200;
         yoff += 0.01;
-        
+    }
+    void render() {        
+
         fill(30,180,30);
-        rect(width - (location*10),height-n, 10, n);
+        rect(width - (location*10),height-waterLineHeight, 10, waterLineHeight);
     }
 }
