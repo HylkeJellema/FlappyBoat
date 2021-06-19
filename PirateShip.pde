@@ -21,22 +21,26 @@ class PirateShip{
     }
 
     void update(){
-        if (xPos>waterHeight){
+        if (xPos>waterHeight && (state==1) && !MSD.isActive() && velocity<1){
             state = 2;
-            xPos-=5;
+            xPos-=1;
             MSD.setIncomingVelocity(velocity);
+            MSD.setActive(true);
         }
 
         switch (state) {
             case 1 :
                 velocity -= gravity;
-                xPos-=velocity;  
             break;	
 
             case 2 :
-               xPos +=  MSD.finalVelocity(); 
+                MSD.calculate();
+                velocity = MSD.getVelocity(); 
+                println(MSD.getVelocity());
             break;	
         }
+
+        xPos-=velocity;  
     }
 
     void render(){
@@ -50,5 +54,6 @@ class PirateShip{
     void push(){
         velocity = jumpVelocity;
         state = 1;
+        MSD.setActive(false);
     }
 }

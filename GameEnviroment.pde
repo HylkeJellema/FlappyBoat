@@ -13,15 +13,15 @@ class GameEnviroment {
 
 
   void update(PVector mouse) {
-    ship.update();
+        ship.update();
   }
 
   void render() {
-    background(skyColor);
-    ship.render();
+        background(skyColor);
+        ship.render();
   }
 
   void mousePressedEvent() {
-    ship.push();
+        ship.push();
   }
 }
