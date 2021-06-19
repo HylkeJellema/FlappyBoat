@@ -37,10 +37,12 @@ class MenuEnviroment {
     } else {
       hoverOver = false;
     }
-    if (hoverOver && mousePressed) {
+  }
+
+  void mousePressedEvent(){
+    if (hoverOver) {
       mainRef.setState(2);
     }
-     
   }
 
   void render( ) {

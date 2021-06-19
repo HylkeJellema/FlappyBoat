@@ -12,6 +12,7 @@ class MainEnviroment {
   MainEnviroment(PApplet app) {
     this.app=app;
     state = MENU_PAGE;
+    state = GAME_PAGE;
     menu = new MenuEnviroment(this); //passing main screen as object to states can be changed.
     game = new GameEnviroment(this);
   }
@@ -29,16 +30,27 @@ class MainEnviroment {
       game.update(mouse);
       game.render();
       break;
-     
-     
     }
   }
 
-  void setState(int i) {
+  void setState(int i) { //to set a stage
     state = i;
   }
 
-  PApplet getApp() {
+  PApplet getApp() { //receive main class as object method
     return app;
+  }
+
+  void mousePressedEvent(){
+    switch (state) { //pass mosue event
+
+    case MENU_PAGE:
+      menu.mousePressedEvent();
+      break;
+
+    case GAME_PAGE:
+      game.mousePressedEvent();
+      break;
+    }
   }
 }

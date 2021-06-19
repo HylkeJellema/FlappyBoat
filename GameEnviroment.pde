@@ -3,22 +3,24 @@ class GameEnviroment{
     MainEnviroment mainRef;
     PirateShip ship;
     GameWater water;
-    color background;
+    color skyColor = color(135, 206, 235);
+    float waterHeight;
 
     GameEnviroment(MainEnviroment mainRef){
         this.mainRef = mainRef;
         ship = new PirateShip();
-        background = color(50,50,200);
     }
-  
-    
-
 
     void update(PVector mouse){
         ship.update();
     }
 
     void render(){
-      
+        background(skyColor);
+        ship.render();
+    }
+
+    void mousePressedEvent(){
+        ship.push();
     }
 }
