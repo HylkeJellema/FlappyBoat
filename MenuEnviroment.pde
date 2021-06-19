@@ -25,12 +25,10 @@ class MenuEnviroment {
     hoverOver = false;
     
     //Flocking related
-    herd = new Flock(); 
-    for (int i = 0; i < 150; i++) {
-      Boid b = new Boid(random(width), random(height));
-      herd.render CoverImage = loadImage("Coverimage.png");
+
+      CoverImage = loadImage("Coverimage.png");
     }
-  }
+  
 
   void update(PVector mouse) {
   //  obstruction.render(mouse);
@@ -42,7 +40,7 @@ class MenuEnviroment {
     if (hoverOver && mousePressed) {
       mainRef.setState(2);
     }
-      herd.update(mouse);
+     
   }
 
   void render( ) {

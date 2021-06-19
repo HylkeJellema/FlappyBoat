@@ -8,7 +8,7 @@ class GameEnviroment{
     GameEnviroment(MainEnviroment mainRef){
         this.mainRef = mainRef;
         ship = new PirateShip();
-        background = color
+       // background = color
     }
   
     

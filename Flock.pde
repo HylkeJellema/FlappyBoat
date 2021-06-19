@@ -10,7 +10,7 @@ class Flock{
 
   void update(PVector mouse) {
     for (Boid b : boids) {
-      b.addBoid(boids);  
+      b.render();  
       fishingRod.render(mouse);
     }
   }
