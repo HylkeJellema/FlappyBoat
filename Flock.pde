@@ -1,22 +1,22 @@
-class Flock{
-  Flock herd;
-  Obstruction fishingRod;
-    ArrayList<Boid> boids;
+class Flock {
+  Fish swimmer;
+
+  ArrayList<Fish> schoolOfFish;
+
 
   Flock() {
-    fishingRod = new  Obstruction();
-    boids = new ArrayList<Boid>(); 
+    schoolOfFish = new ArrayList<Fish>();
   }
 
   void update(PVector mouse) {
-    for (Boid b : boids) {
-      b.render();  
-      fishingRod.render(mouse);
+    for (Fish swimmer : schoolOfFish) {
+      swimmer.flock(schoolOfFish, mouse);
+      swimmer.update();
+      swimmer.render();
     }
   }
 
-  void render(Boid b) {
-    boids.add(b);
+  void run(Fish f) {
+    schoolOfFish.add(f);
   }
-  
 }

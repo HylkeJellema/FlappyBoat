@@ -1,13 +1,13 @@
 class MenuEnviroment {
 
-  PVector buttonPos;
+  PVector buttonPos, InitialPos;
   int buttonSize; // size of the start button 
   color buttonColor, hoverColor; // Colors going with the button
   boolean hoverOver; // boolean activating the next phase of the game
   PImage CoverImage;
 
 
-  Flock flock;
+  Flock group;
   MainEnviroment mainRef;
   Movie backgroundWater;
 
@@ -23,15 +23,19 @@ class MenuEnviroment {
     buttonColor = color(32, 160, 232);
     hoverColor = color(52, 86, 105);
     hoverOver = false;
-    
-    //Flocking related
 
-      CoverImage = loadImage("Coverimage.png");
+    //Flocking related
+    CoverImage = loadImage("Coverimage.png");
+    group = new Flock();
+    for (int i = 0; i < 150; i++) {
+      Fish f = new Fish(new PVector(random(width), random(height)));
+      group.run(f);
     }
-  
+  }
+
 
   void update(PVector mouse) {
-  //  obstruction.render(mouse);
+    //  obstruction.render(mouse);
     if (dist(mouse.x, mouse.y, buttonPos.x, buttonPos.y) < buttonSize/2) {
       hoverOver = true;
     } else {
@@ -39,16 +43,18 @@ class MenuEnviroment {
     }
   }
 
-  void mousePressedEvent(){
+  void mousePressedEvent() {
     if (hoverOver) {
       mainRef.setState(2);
     }
   }
 
-  void render( ) {
+  void render(PVector mouse) {
+
     image(backgroundWater, 0, 0, width, height );// drawing video and resizing it
+    group.update(mouse);
     image(CoverImage, 0, 0);
-    
+
 
     if (hoverOver) {
       fill(hoverColor);

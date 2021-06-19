@@ -18,12 +18,12 @@ class MainEnviroment {
   }
 
   void update(PVector mouse) {
-    
+
     switch (state) { //all states and there methods
 
     case MENU_PAGE:
       menu.update(mouse);
-      menu.render();
+      menu.render(mouse);
       break;
 
     case GAME_PAGE:
@@ -41,7 +41,7 @@ class MainEnviroment {
     return app;
   }
 
-  void mousePressedEvent(){
+  void mousePressedEvent() {
     switch (state) { //pass mosue event
 
     case MENU_PAGE:

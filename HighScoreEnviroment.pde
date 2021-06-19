@@ -1,14 +1,11 @@
-class HighScoreEnviroment{
+class HighScoreEnviroment {
 
-    HighScoreEnviroment(){
-        
-    }
+  HighScoreEnviroment() {
+  }
 
-    void update(PVector mouse, PVector screenSize){
- 
-    }
+  void update(PVector mouse, PVector screenSize) {
+  }
 
-    void render(){
-
-    }
+  void render() {
+  }
 }
