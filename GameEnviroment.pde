@@ -1,23 +1,23 @@
 class GameEnviroment{
-     PImage img;
-
+    
     MainEnviroment mainRef;
+    PirateShip ship;
+    GameWater water;
 
     GameEnviroment(MainEnviroment mainRef){
         this.mainRef = mainRef;
-          img = loadImage("Optimist.png");
+        ship = new PirateShip();
     }
 
 
     void update(PVector mouse, PVector screenSize){
- 
+        ship.update();
     }
 
     void render(){
        
-       imageMode(CENTER);
-   
-    // image(img, width/2, height/2,  300,414);
+        imageMode(CENTER);
+        ship.render();
  
     }
 }

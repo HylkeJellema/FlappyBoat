@@ -9,6 +9,12 @@ class MainEnviroment {
   GameEnviroment game;
   PApplet app;
 
+    MainEnviroment(PApplet app){
+        this.app=app;
+        state = MENU_PAGE;
+        menu = new MenuEnviroment(this); //passing main screen as object to states can be changed.
+        game = new GameEnviroment(this);
+    }
 
   MainEnviroment(PApplet app) {
     this.app=app;

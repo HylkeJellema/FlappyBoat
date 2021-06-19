@@ -21,16 +21,13 @@ public class FlappyBoat extends PApplet {
 
 
 MainEnviroment mainEnviroment;
-Flock flock;
+
 
 public void setup() {
     
     mainEnviroment = new MainEnviroment(this);
-    flock = new Flock();
-     for(int i = 0; i < 150; i++){
-      Boid b = new Boid(random(width), random(height));
-      flock.addBoid(b);
-    }
+  
+
 
 }
 
@@ -39,7 +36,7 @@ public void draw() {
         new PVector(mouseX,mouseY), //passes mouse cords
         new PVector(width,height)   //passes screen size
     );
-   flock.run();
+   
     
 }
 
@@ -64,9 +61,9 @@ public void movieEvent(Movie m) {
     objPos = new PVector(width/2, height/2);
     sizex = 10.0f; 
     sizey = 6.0f;
-    maxvelocity = 2;
-    maxforce = 0.05f;
-    wall= new Obstruction(objPos.x, objPos.y);
+    maxvelocity = 3;
+    maxforce = 0.08f;
+    wall = new Obstruction(objPos.x, objPos.y);
   }
 
   public void run(ArrayList<Boid> boids) {
@@ -118,8 +115,9 @@ public void movieEvent(Movie m) {
   }
 
   public void render() {
-    fill(255, 0, 0);
+    fill(160,198,236);
     ellipse(position.x, position.y, sizex, sizey);
+    triangle(position.x-5, position.y, position.x-10, position.y - 5, position.x-10, position.y + 5);
  
   }
 
@@ -263,13 +261,13 @@ class Flock{
   
 }
 class GameEnviroment{
-     PImage img;
-
+    
+    PImage boat;
     MainEnviroment mainRef;
 
     GameEnviroment(MainEnviroment mainRef){
         this.mainRef = mainRef;
-          img = loadImage("Optimist.png");
+        boat = loadImage("pirateBoat.png");
     }
 
 
@@ -279,9 +277,8 @@ class GameEnviroment{
 
     public void render(){
        
-       imageMode(CENTER);
-   
-     image(img, width/2, height/2,  300,414);
+        imageMode(CENTER);
+        image(boat, width/2, height/2,  300,414);
  
     }
 }
@@ -328,6 +325,7 @@ class MainEnviroment{
     MainEnviroment(PApplet app){
         this.app=app;
         state = MENU_PAGE;
+        state = GAME_PAGE;
         menu = new MenuEnviroment(this); //passing main screen as object to states can be changed.
         game = new GameEnviroment(this);
     }
@@ -358,7 +356,8 @@ class MainEnviroment{
 }
 class MenuEnviroment {
 
-  int buttonPosx, buttonPosy, size; // position and size of the start button 
+  PVector buttonPos, bannerPos, bannerSize;
+  int buttonSize; // size of the start button 
   int buttonColor, hoverColor; // Colors going with the button
   boolean hoverOver; // boolean activiting the next phase of the game
 
@@ -368,59 +367,74 @@ class MenuEnviroment {
   Movie backgroundWater;
 
   MenuEnviroment(MainEnviroment mainRef) {
-    //Video related
     this.mainRef = mainRef;
+     //Video related
     backgroundWater = new Movie(mainRef.getApp(), "water.mp4");
     backgroundWater.loop();
-    
+
     //Button related 
-    buttonPosx = width/2;
-    buttonPosy = height/2;
-    size = 100;
+    buttonPos = new PVector(width/2, height/2);
+    bannerPos = new PVector(width/2, height/5);
+    bannerSize = new PVector(600,200);
+    
+    buttonSize = 100;
     buttonColor = color(32, 160, 232);
     hoverColor = color(52, 86, 105);
     hoverOver = false;
-    
-    
+    //Flocking related
+    flock = new Flock(); 
+    for (int i = 0; i < 150; i++) {
+      Boid b = new Boid(random(width), random(height));
+      flock.addBoid(b);
+    }
   }
 
   public void update(PVector mouse, PVector screenSize) {
-    if (dist(mouse.x, mouse.y, buttonPosx, buttonPosy) < size/2) {
+    if (dist(mouse.x, mouse.y, buttonPos.x, buttonPos.y) < buttonSize/2) {
       hoverOver = true;
     } else {
       hoverOver = false;
     }
     if (hoverOver && mousePressed) {
-      mainEnviroment.state = 2;
+      mainRef.setState(2);
     }
   }
 
   public void render() {
-    image(backgroundWater, 0, 0, 1400, 800 );// drawing video and resizing it
+    image(backgroundWater, 0, 0, width, height );// drawing video and resizing it
+    flock.run();
 
     if (hoverOver) {
       fill(hoverColor);
     } else {
       fill(buttonColor);
     }
-    circle(buttonPosx, buttonPosy, size);
+    circle(buttonPos.x, buttonPos.y, buttonSize);
     fill(0);
-    text("Press to start", buttonPosx-35, buttonPosy);
+    textSize(12);
+    text("Press to start", buttonPos.x-40, buttonPos.y);
+    fill(buttonColor);
+    rectMode(CENTER);
+    rect(bannerPos.x, bannerPos.y, bannerSize.x,bannerSize.y);
+    fill(0);
+    textSize(20);
+    text("Flappy Boat made my Hylke Jellema and Marc Harinck", bannerPos.x, bannerPos.y);
   }
 }
 class Obstruction{
-  float posX;
-  float posY;
+float posx, posy, size;
+
   
   Obstruction(float tempX, float tempY){   
-    posX = tempX;
-    posY = tempY;
+  tempX = posx;
+  tempY = posy;
+  size = 150;
   }
   
   public void render(){
     noStroke();
     fill(0,0);
-    ellipse(posX, posY, 100, 100);
+    ellipse(posx, posy, size, size);
   }
 }
   public void settings() {  size(1400,800); }
