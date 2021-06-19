@@ -1,15 +1,16 @@
 class GameEnviroment {
 
-  MainEnviroment mainRef;
-  PirateShip ship;
-  GameWater water;
-  color skyColor = color(135, 206, 235);
-  float waterHeight;
+    MainEnviroment mainRef;
+    PirateShip ship;
+    GameWater water;
+    color skyColor = color(135, 206, 235);
+    float waterHeight = 700;
 
-  GameEnviroment(MainEnviroment mainRef) {
-    this.mainRef = mainRef;
-    ship = new PirateShip();
-  }
+    GameEnviroment(MainEnviroment mainRef){
+        this.mainRef = mainRef;
+        ship = new PirateShip(waterHeight);
+    }
+
 
   void update(PVector mouse) {
     ship.update();
