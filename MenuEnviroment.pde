@@ -6,6 +6,7 @@ class MenuEnviroment {
   boolean hoverOver; // boolean activating the next phase of the game
   PImage CoverImage;
 
+
   Flock flock;
   MainEnviroment mainRef;
   Movie backgroundWater;
@@ -24,11 +25,10 @@ class MenuEnviroment {
     hoverOver = false;
     
     //Flocking related
-    flock = new Flock(); 
+    herd = new Flock(); 
     for (int i = 0; i < 150; i++) {
       Boid b = new Boid(random(width), random(height));
-      flock.addBoid(b);
-      CoverImage = loadImage("Coverimage.png");
+      herd.render CoverImage = loadImage("Coverimage.png");
     }
   }
 
@@ -42,7 +42,7 @@ class MenuEnviroment {
     if (hoverOver && mousePressed) {
       mainRef.setState(2);
     }
-      flock.run(mouse);
+      herd.update(mouse);
   }
 
   void render( ) {

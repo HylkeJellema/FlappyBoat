@@ -1,5 +1,5 @@
   class Boid {
-  //Obstruction wall;
+ 
 
   PVector position;
   PVector velocity;
@@ -18,10 +18,10 @@
     sizey = 6.0;
     maxvelocity = 3;
     maxforce = 0.08;
- //   wall = new Obstruction(objPos.x, objPos.y);
+ 
   }
 
-  void run(ArrayList<Boid> boids) {
+  void updated(ArrayList<Boid> boids) {
     flock(boids);
     update();
     borders();
