@@ -19,6 +19,7 @@ class GameEnviroment {
   void render() {
         background(skyColor);
         ship.render();
+        water.render();
   }
 
   void mousePressedEvent() {

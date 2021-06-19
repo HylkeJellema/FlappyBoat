@@ -1,22 +1,25 @@
 class GameWater {
+  GameEnviroment game;
+  GameWater wetness;
+  float incline, start;
 
-  float yoff;
-  float location;
-  float waterLineHeight;
-  color waterColor = color(30, 180, 30);
-
-
-  GameWater(float index) {
-    location = index+1;
-    yoff = index/100;
+  GameWater() {
+    incline = 0.005;
+    start = 0;
   }
 
-  void update() {        
-    waterLineHeight = noise(yoff) * 200;
-    yoff += 0.01;
+  void update() {
   }
-  void render() {        
-    fill(waterColor);
-    rect(width - (location*10), height-waterLineHeight, 10, waterLineHeight);
+
+  void render() {
+    beginShape();
+    float yo = start;
+    for (float x = 0; x < width; x++) {
+      float y = noise(yo) *370 +250 ;
+      yo += incline;
+      vertex(x, y);
+    }
+    endShape();
+    yo += incline;
   }
 }

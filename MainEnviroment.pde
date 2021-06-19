@@ -34,10 +34,12 @@ class MainEnviroment {
       game.render();
       break;
 
-    case GAMEOVER_PAGE:
-      gameOver.update(mouse);
-      gameOver.render();
-      break;
+    //case GAMEOVER_PAGE:
+    //  gameOver.update(mouse);
+    //  gameOver.render();
+    //  break;
+      
+      
     }
   }
 
