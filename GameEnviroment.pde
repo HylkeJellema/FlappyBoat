@@ -21,7 +21,7 @@ class GameEnviroment {
   void update() {
         ship.update();
         monies.update();
-        if (frameCount%frameRate==0){
+        if ((frameCount%60)==0){
               timer--;
         }
         if (timer <=0){

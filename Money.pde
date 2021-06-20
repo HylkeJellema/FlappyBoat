@@ -27,7 +27,7 @@ class Money {
         }
     }
     boolean isHit(){
-        if (dist(ship.xPos, ship.yPos, location.x, location.y)<40){
+        if (dist(ship.xPos, ship.yPos, location.x, location.y)<60){
             return true;
         } else {
             return false;
