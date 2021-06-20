@@ -14,7 +14,7 @@ class MainEnviroment {
     state = MENU_PAGE;
     menu = new MenuEnviroment(this); //passing main screen as object to states can be changed.
     game = new GameEnviroment(this);
-    gameOver = new GameOverEnviroment(this);
+    gameOver = new GameOverEnviroment(this, game);
   }
 
   void update(PVector mouse) {

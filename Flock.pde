@@ -15,6 +15,11 @@ class Flock {
       swimmer.render();
     }
   }
+  void render() {
+    for (Fish swimmer : schoolOfFish) {
+      swimmer.render();
+    }
+  }
 
   void run(Fish f) {
     schoolOfFish.add(f);

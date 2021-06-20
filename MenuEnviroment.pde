@@ -35,12 +35,12 @@ class MenuEnviroment {
 
 
   void update(PVector mouse) {
-    group.update(mouse);
     if (dist(mouse.x, mouse.y, buttonPos.x, buttonPos.y) < buttonSize/2) {
       hoverOver = true;
     } else {
       hoverOver = false;
     }
+    group.update(mouse);
   }
 
   void mousePressedEvent() {
@@ -52,6 +52,7 @@ class MenuEnviroment {
   void render() {
 
     image(backgroundWater, 0, 0);// drawing video and resizing it
+    group.render();
     image(CoverImage, 0, 0);
 
 
