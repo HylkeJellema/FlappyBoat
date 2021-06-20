@@ -23,10 +23,10 @@ class MainEnviroment {
 
     switch (state) { //all states and there methods
 
-    case MENU_PAGE:
-      menu.update(mouse);
-      menu.render(mouse);
-      break;
+    //case MENU_PAGE:
+    //  menu.update(mouse);
+    //  menu.render(mouse);
+    //  break;
 
     case GAME_PAGE:
       game.update();
@@ -37,6 +37,11 @@ class MainEnviroment {
     //  gameOver.update(mouse);
     //  gameOver.render();
     //  break;
+
+    case GAMEOVER_PAGE:
+      gameOver.update(mouse);
+      gameOver.render();
+      break;
       
       
     }
