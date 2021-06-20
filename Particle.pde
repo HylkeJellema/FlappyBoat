@@ -20,24 +20,24 @@ class Particle{
     }
     
     void render() { //renders the particle
-        if (state==1){
+        if (state==1){ //as a star when flying
             fill(255, 255, 0, life);
             star(location.x,location.y,5,15,5);   
         }
-        if (state==2){
+        if (state==2){ //circle when in water
             fill(0, 0, 255, life);
             circle(location.x,location.y,5);   
         }
     }
     
-    boolean isDead(){ //return if dead
+    boolean isDead(){ //return true if dead and gets removed
         if (life>0){
             return false;
         } else {
             return true;
         }
     }
-    void star(float x, float y, float radius1, float radius2, int npoints) { //stolen from processing website because stars are cooler then circles
+    void star(float x, float y, float radius1, float radius2, int npoints) { //stolen from processing website because stars are cooler then circles and im deff not making it myself ;)
         float angle = TWO_PI / npoints;
         float halfAngle = angle/2.0;
         beginShape();

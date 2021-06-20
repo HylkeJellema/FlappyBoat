@@ -1,20 +1,20 @@
 class MainEnviroment {
 
-  int state; //shows state of game 
+  int state; //shows current state of game 
   final int MENU_PAGE = 1; //stages
   final int GAME_PAGE = 2; 
   final int GAMEOVER_PAGE = 3; 
-  MenuEnviroment menu;
+  MenuEnviroment menu; //all state enviroments
   GameEnviroment game;
   GameOverEnviroment gameOver;
-  PApplet app;
+  PApplet app; 
 
   MainEnviroment(PApplet app) {
     this.app=app;
-    state = MENU_PAGE;
-    menu = new MenuEnviroment(this); //passing main screen as object to states can be changed.
+    state = MENU_PAGE; // first state
+    menu = new MenuEnviroment(this); //passing main screen as object so states can be changed.
     game = new GameEnviroment(this);
-    gameOver = new GameOverEnviroment(this, game);
+    gameOver = new GameOverEnviroment(this, game); //passing game for score
   }
 
   void update(PVector mouse) {
@@ -49,7 +49,7 @@ class MainEnviroment {
   }
 
   void mousePressedEvent() {
-    switch (state) { //pass mosue event
+    switch (state) { //pass mouse event
 
     case MENU_PAGE:
       menu.mousePressedEvent();

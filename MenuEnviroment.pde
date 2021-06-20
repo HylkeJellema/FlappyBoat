@@ -1,11 +1,10 @@
 class MenuEnviroment {
 
-  PVector buttonPos, InitialPos;
+  PVector buttonPos; //position of start button
   int buttonSize; // size of the start button 
   color buttonColor, hoverColor; // Colors going with the button
   boolean hoverOver; // boolean activating the next phase of the game
   PImage CoverImage;
-
 
   Flock group;
   MainEnviroment mainRef;
@@ -35,7 +34,7 @@ class MenuEnviroment {
 
 
   void update(PVector mouse) {
-    if (dist(mouse.x, mouse.y, buttonPos.x, buttonPos.y) < buttonSize/2) {
+    if (dist(mouse.x, mouse.y, buttonPos.x, buttonPos.y) < buttonSize/2) { //if hovering the boolean is changed for later use in render
       hoverOver = true;
     } else {
       hoverOver = false;
@@ -44,19 +43,19 @@ class MenuEnviroment {
   }
 
   void mousePressedEvent() {
-    if (hoverOver) {
-      mainRef.setState(2);
+    if (hoverOver) { //goes to game when button is pressed
+      mainRef.setState(2); 
     }
   }
 
   void render() {
 
-    image(backgroundWater, 0, 0);// drawing video and resizing it
+    image(backgroundWater, 0, 0);// drawing video
     group.render();
     image(CoverImage, 0, 0);
 
 
-    if (hoverOver) {
+    if (hoverOver) { //draws button
       fill(hoverColor);
     } else {
       fill(buttonColor);

@@ -12,7 +12,7 @@ class MoneySpawner {
     }
   
     void update() {
-        if (frameCount%60==0){
+        if (frameCount%60==0){ //spawns money every second
             money.add(new Money(ship));
         }
         
@@ -22,7 +22,7 @@ class MoneySpawner {
             if (bill.isDead()) { //removes out of bound money
                 money.remove(i);
             }
-            if (bill.isHit()) { //removes out of bound money
+            if (bill.isHit()) { //removes hit money and adds point
                 money.remove(i);
                 game.addPoint();
             }

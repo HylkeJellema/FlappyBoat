@@ -1,9 +1,9 @@
 class Fish {
-// variables for the fish 
+  // variables for the fish 
   PVector position, velocity, acceleration;
   //variables for the flocking(interaction between fish)
   PVector seperation, alignment, cohesion, avoidance;
-// the intensity of the flocking(interaction between fish)
+  // the intensity of the flocking(interaction between fish)
   float seperationWeight, alignmentWeight, cehesionWeight, avoidanceWeight;
   //limits set for the fish
   float diameter, maxVelocity, maxForce;
@@ -98,7 +98,7 @@ class Fish {
 
 
 
-//method allowing the fish's velocity to change
+  //method allowing the fish's velocity to change
   void applyForce(PVector force) {
     // We could add mass here if we want A = F / M
     acceleration.add(force);

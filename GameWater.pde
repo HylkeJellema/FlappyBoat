@@ -12,7 +12,7 @@ class GameWater {
   }
 
   void render(float waterHeight) {
-    fill(waterColor);
+    fill(waterColor); //draws shape using perlinnoise
     beginShape();
     float yOff = start;
     vertex(0, height);

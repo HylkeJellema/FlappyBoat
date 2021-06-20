@@ -6,18 +6,18 @@ MainEnviroment mainEnviroment;
 
 
 void setup() {
-  size(1400, 800);
-  mainEnviroment = new MainEnviroment(this);
+  size(1400, 800); //sets screen size
+  mainEnviroment = new MainEnviroment(this); //makes the main enviroment
 }
 
 void draw() {
-  mainEnviroment.update(new PVector(mouseX, mouseY)); //passes mouse cords
+  mainEnviroment.update(new PVector(mouseX, mouseY)); //passes mouse cords to main
 }
 
-void movieEvent(Movie m) {
-  m.read();
+void movieEvent(Movie m) { //for the video player
+  m.read(); 
 }
 
-void mousePressed() {
+void mousePressed() { //mouse press pass along to main
   mainEnviroment.mousePressedEvent();
 }

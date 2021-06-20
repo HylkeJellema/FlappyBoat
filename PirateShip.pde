@@ -25,9 +25,9 @@ class PirateShip{
     }
 
     void update(){
-        stars.update(state, new PVector(xPos, yPos));
+        stars.update(state, new PVector(xPos, yPos)); //updates stars and water particles
 
-        if (yPos>waterHeight && state==1 && !mSD.isActive() && velocity<1){
+        if (yPos>waterHeight && state==1 && !mSD.isActive() && velocity<1){ //when boat hits water state is set to active MSD
             state = 2;
             yPos-=1;
             mSD.setIncomingVelocity(velocity);
@@ -35,23 +35,23 @@ class PirateShip{
         }
 
         switch (state) {
-            case 1 :
+            case 1 : //when in air gravity effects boat
                 if (velocity > -10){
                     velocity -= gravity;
                 }
             break;	
 
-            case 2 :
+            case 2 : //when on water MSD is active
                 mSD.calculate();
                 velocity = mSD.getVelocity(); 
             break;	
         }
-        if(velocity <= 0) {
+        if(velocity <= 0) { //calculates angle
             angle = velocity / jumpVelocity * minAngle;
         }else{
             angle = velocity / maxVelocity * maxAngle;
         }
-        yPos-=velocity;  
+        yPos-=velocity;  //velocity is added (no PVectors cause x and y are always seperate)
     }
 
     void render(){

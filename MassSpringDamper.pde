@@ -1,11 +1,11 @@
 class MassSpringDamper{
 
-        float springConstant;
+        float springConstant; 
         float dampingConstant;
         boolean active = false;
         float mass;
         float velocity;
-        float dt;
+        float dt; //change in time
         float position;
         
     MassSpringDamper() {
@@ -24,20 +24,20 @@ class MassSpringDamper{
 
     }
 
-    float getVelocity() {
+    float getVelocity() { //returns velocity
         return velocity;
     }
 
     void setIncomingVelocity(float velocity){ //setting velocity
         this.velocity = velocity;
     } 
-    boolean isActive(){
+    boolean isActive(){ //checks for active MSD
         return active;
     }
-    void setActive(boolean i){
+    void setActive(boolean i){ //sets active
         active = i;
     }
-    void reset(){
+    void reset(){ //reset when boat is flying
         velocity = 0;
         position = 0;
     }

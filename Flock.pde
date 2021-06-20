@@ -1,13 +1,13 @@
 class Flock {
   Fish swimmer; // object of class fish
-//arraylist of fish
+  //arraylist of fish
   ArrayList<Fish> schoolOfFish;
 
-//constructor of the flock
+  //constructor of the flock
   Flock() {
     schoolOfFish = new ArrayList<Fish>();
   }
-// method calling the flock
+  // method calling the flock
   void update(PVector mouse) {
     for (Fish swimmer : schoolOfFish) {
       swimmer.flock(schoolOfFish, mouse);
