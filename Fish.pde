@@ -1,16 +1,18 @@
 class Fish {
-
+// variables for the fish 
   PVector position, velocity, acceleration;
+  //variables for the flocking(interaction between fish)
   PVector seperation, alignment, cohesion, avoidance;
-
+// the intensity of the flocking(interaction between fish)
   float seperationWeight, alignmentWeight, cehesionWeight, avoidanceWeight;
+  //limits set for the fish
   float diameter, maxVelocity, maxForce;
 
 
-
+//constructor of the fish 
   Fish(PVector position) {
-    setPosition(position);
-    velocity     = new PVector(random(-2, 2), random(-2, 2));
+    setPosition(position); // method created to get position 
+    velocity     = new PVector(random(-1, 1), random(-1, 1));
     acceleration = new PVector(0, 0);
 
     seperation   = new PVector(0, 0);
@@ -18,15 +20,16 @@ class Fish {
     cohesion     = new PVector(0, 0);
     avoidance    = new PVector(0, 0);
     diameter     = 10.0;
-    maxVelocity  = 3.0;
+    maxVelocity  = 1.0;
     maxForce     = 0.1;
   }
-
+// method running the fish's appeal, brains, and behaviour with other fish
   void run(ArrayList<Fish> schoolOfFish, PVector mouse) {
     flock(schoolOfFish, mouse);
     update();
     render();
   }
+  // method running the interactiuon between fish
   void flock(ArrayList<Fish> schoolOfFish, PVector mouse) {
 
     PVector avoidance = avoidance(mouse); 
@@ -35,7 +38,7 @@ class Fish {
     PVector cohesion = cohesion(schoolOfFish);
 
     // Arbitrarily weight these forces
-    seperation.mult(3.0);
+    seperation.mult(1.0);
     alignment.mult(1.0);
     cohesion.mult(1.0);
     avoidance.mult(2.0);
@@ -74,7 +77,7 @@ class Fish {
     return steer;
   }
 
-
+//the fish's behaviour 
   void update() {
     velocity.limit(maxVelocity);
     velocity.add(acceleration);
@@ -82,7 +85,7 @@ class Fish {
     acceleration.mult(0);
   }
 
-
+// the fish's appearance 
   void render() {
     pushMatrix();
     translate(position.x, position.y);
@@ -95,7 +98,7 @@ class Fish {
 
 
 
-
+//method allowing the fish's velocity to change
   void applyForce(PVector force) {
     // We could add mass here if we want A = F / M
     acceleration.add(force);
@@ -194,9 +197,10 @@ class Fish {
     }
   }
 
-
+//position methods  
   void setPosition(PVector position) {
     this.position = position;
+    //local position within the object^
   }
   PVector getPosition() {
     return position;

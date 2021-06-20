@@ -34,6 +34,11 @@ class GameEnviroment {
         water.render(waterHeight);
         ship.render();
         monies.render();
+        textSize(23);
+        fill(255,255,255);
+        text("Score " + score, width-200, height / 10 );
+        text("Timer " + timer, width - 200, height / 8);
+        
         
   }
 
@@ -44,4 +49,5 @@ class GameEnviroment {
   void addPoint(){
         score++;
   }
+
 }
