@@ -56,6 +56,7 @@ class PirateShip{
 
     void render(){
         stars.render();
+        
         pushMatrix();
         imageMode(CENTER);
         translate(xPos, yPos);

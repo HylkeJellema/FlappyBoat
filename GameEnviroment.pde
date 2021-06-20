@@ -3,7 +3,7 @@ class GameEnviroment {
     MainEnviroment mainRef;
     PirateShip ship;
     GameWater water;
-    BuoySpawner boeiMaarDanMeervoud;
+    MoneySpawner monies;
     color skyColor = color(135, 206, 235);
     float waterHeight = 650;
     int gameSpeed =5;
@@ -12,18 +12,20 @@ class GameEnviroment {
         this.mainRef = mainRef;
         ship = new PirateShip(waterHeight,gameSpeed);
         water = new GameWater(gameSpeed);
-        boeiMaarDanMeervoud = new BuoySpawner(gameSpeed, waterHeight);
+        monies = new MoneySpawner(gameSpeed);
     }
 
 
   void update() {
         ship.update();
+        monies.update();
   }
 
   void render() {
         background(skyColor);      
         water.render(waterHeight);
         ship.render();
+        monies.render();
         
   }
 
