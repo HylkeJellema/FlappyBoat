@@ -19,6 +19,7 @@ class GameOverEnviroment {
   void render() {     
     image(backgroundWater, 0, 0);
     gameOverImage.get();    
-    image(gameOverImage, 0, 0);
+  imageMode(CORNER);
+   image(gameOverImage, 0, 0);
   }
 }

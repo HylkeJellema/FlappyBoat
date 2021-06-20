@@ -17,8 +17,7 @@ class GameEnviroment {
         monies = new MoneySpawner(gameSpeed, ship, this);
     }
 
-
-  void update() {
+    void update() {
         ship.update();
         monies.update();
         if ((frameCount%60)==0){
@@ -28,6 +27,7 @@ class GameEnviroment {
               mainRef.setState(3);
         }
   }
+
 
   void render() {
         background(skyColor);      
@@ -49,5 +49,6 @@ class GameEnviroment {
   void addPoint(){
         score++;
   }
+
 
 }
