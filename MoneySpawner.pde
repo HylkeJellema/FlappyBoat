@@ -1,24 +1,21 @@
 class MoneySpawner {
     int gameSpeed;
     ArrayList<Money> money;
+    PirateShip ship;
   
-    MoneySpawner(int gameSpeed) {
+    MoneySpawner(int gameSpeed, PirateShip ship) {
         this.gameSpeed = gameSpeed;
         money = new ArrayList<Money>();
-        
-
+        this.ship = ship;
     }
   
     void update() {
-        
-        this.location = location;
-
         if (frameCount%60==0){
-            particles.add();
+            money.add(new Money(ship));
         }
         
-        for (int i = money.size()-1; i >= 0; i--) { //updates all particles
-            Particle bill = money.get(i);
+        for (int i = money.size()-1; i >= 0; i--) { //updates bills
+            Money bill = money.get(i);
             bill.update();
             if (bill.isDead()) { //removes out of bound money
                 money.remove(i);
@@ -27,8 +24,8 @@ class MoneySpawner {
     }
     
     void render() { //render all particles
-        for (Particle p : particles) {
-            p.render();
+        for (Money bill : money) {
+            bill.render();
         }
     }
 }

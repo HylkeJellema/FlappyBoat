@@ -7,12 +7,13 @@ class GameEnviroment {
     color skyColor = color(135, 206, 235);
     float waterHeight = 650;
     int gameSpeed =5;
+    int score;
 
     GameEnviroment(MainEnviroment mainRef){
         this.mainRef = mainRef;
         ship = new PirateShip(waterHeight,gameSpeed);
         water = new GameWater(gameSpeed);
-        monies = new MoneySpawner(gameSpeed);
+        monies = new MoneySpawner(gameSpeed, ship);
     }
 
 
@@ -31,5 +32,9 @@ class GameEnviroment {
 
   void mousePressedEvent() {
         ship.push();
+  }
+
+  void addPoint(){
+        score++;
   }
 }

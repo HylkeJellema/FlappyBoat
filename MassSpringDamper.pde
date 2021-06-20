@@ -37,4 +37,8 @@ class MassSpringDamper{
     void setActive(boolean i){
         active = i;
     }
+    void reset(){
+        velocity = 0;
+        position = 0;
+    }
 }

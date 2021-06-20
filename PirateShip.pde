@@ -9,7 +9,7 @@ class PirateShip{
     float maxAngle = 20;
     float gravity = 0.4;
     float xPos;
-    float yPos = 700;
+    float yPos = 650;
     float size = 100;
     float waterHeight;
     float maxVelocity = -7;
@@ -69,5 +69,6 @@ class PirateShip{
         velocity = jumpVelocity;
         state = 1;
         mSD.setActive(false);
+        mSD.reset();
     }
 }
