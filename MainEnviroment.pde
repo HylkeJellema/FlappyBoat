@@ -14,7 +14,6 @@ class MainEnviroment {
     this.app=app;
     state = MENU_PAGE;
     state = GAME_PAGE;
-    state = GAMEOVER_PAGE;
     menu = new MenuEnviroment(this); //passing main screen as object to states can be changed.
     game = new GameEnviroment(this);
     gameOver = new GameOverEnviroment(this);
@@ -30,7 +29,7 @@ class MainEnviroment {
       break;
 
     case GAME_PAGE:
-      game.update(mouse);
+      game.update();
       game.render();
       break;
 
