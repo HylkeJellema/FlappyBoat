@@ -51,7 +51,7 @@ class MenuEnviroment {
 
   void render(PVector mouse) {
 
-    image(backgroundWater, 0, 0, width, height );// drawing video and resizing it
+    image(backgroundWater, 0, 0);// drawing video and resizing it
     group.update(mouse);
     image(CoverImage, 0, 0);
 

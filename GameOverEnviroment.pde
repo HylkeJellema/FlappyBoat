@@ -7,7 +7,7 @@ class GameOverEnviroment {
   GameOverEnviroment(MainEnviroment mainRef) {
     this.mainRef = mainRef;
 
-    backgroundWater = new Movie(mainRef.getApp(), "water_SparkVideo.mp4");
+    backgroundWater = new Movie(mainRef.getApp(), "water.mp4");
     backgroundWater.play();
     gameOverImage = loadImage("Gamedone.png");
   }
