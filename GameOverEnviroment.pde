@@ -7,17 +7,17 @@ class GameOverEnviroment {
   GameOverEnviroment(MainEnviroment mainRef) {
     this.mainRef = mainRef;
 
-    backgroundWater = new Movie(mainRef.getApp(), "water.mp4");
-    backgroundWater.loop();
+    backgroundWater = new Movie(mainRef.getApp(), "water_SparkVideo.mp4");
+    backgroundWater.play();
     gameOverImage = loadImage("Gamedone.png");
   }
 
   void update(PVector mouse) {
   }
 
-  void render() {
-     
-    image(backgroundWater, 0, 0, width, height );// drawing video and resizing it
-   //image(gameOverImage, 0, 0);
+  void render() {     
+    image(backgroundWater, 0, 0);
+    gameOverImage.get();    
+   image(gameOverImage, 0, 0);
   }
 }
