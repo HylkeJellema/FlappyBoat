@@ -2,24 +2,27 @@ class GameWater {
   GameEnviroment game;
   GameWater wetness;
   float incline, start;
+  color waterColor = color(17,	136,	234);
+  int gameSpeed;
 
-  GameWater() {
-    incline = 0.005;
+  GameWater(int gameSpeed) {
+    incline = 0.01;
     start = 0;
+    this.gameSpeed = gameSpeed;
   }
 
-  void update() {
-  }
-
-  void render() {
+  void render(float waterHeight) {
+    fill(waterColor);
     beginShape();
-    float yo = start;
-    for (float x = 0; x < width; x++) {
-      float y = noise(yo) *370 +250 ;
-      yo += incline;
-      vertex(x, y);
+    float yOff = start;
+    vertex(0, height);
+    for (float i = 0; i < width; i+=gameSpeed) {
+      float y = noise(yOff) *50 +waterHeight;
+      yOff += incline;
+      vertex(i, y);
     }
+    vertex(width, height);
     endShape();
-    yo += incline;
+    start += incline;
   }
 }
