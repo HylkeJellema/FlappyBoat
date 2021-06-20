@@ -23,7 +23,7 @@ class MainEnviroment {
 
     case MENU_PAGE:
       menu.update(mouse);
-      menu.render(mouse);
+      menu.render();
       break;
 
     case GAME_PAGE:
@@ -32,7 +32,7 @@ class MainEnviroment {
       break;
 
     case GAMEOVER_PAGE:
-      gameOver.update(mouse);
+      gameOver.update();
       gameOver.render();
       break;
       

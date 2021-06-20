@@ -12,7 +12,7 @@ class GameOverEnviroment {
     gameOverImage = loadImage("Gamedone.png");
   }
 
-  void update(PVector mouse) {
+  void update() {
   }
 
   void render() {     

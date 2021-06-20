@@ -35,7 +35,7 @@ class MenuEnviroment {
 
 
   void update(PVector mouse) {
-    //  obstruction.render(mouse);
+    group.update(mouse);
     if (dist(mouse.x, mouse.y, buttonPos.x, buttonPos.y) < buttonSize/2) {
       hoverOver = true;
     } else {
@@ -49,10 +49,9 @@ class MenuEnviroment {
     }
   }
 
-  void render(PVector mouse) {
+  void render() {
 
     image(backgroundWater, 0, 0);// drawing video and resizing it
-    group.update(mouse);
     image(CoverImage, 0, 0);
 
 
