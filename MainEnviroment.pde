@@ -3,8 +3,7 @@ class MainEnviroment {
   int state; //shows state of game 
   final int MENU_PAGE = 1; //stages
   final int GAME_PAGE = 2; 
-  final int SCORE_PAGE = 3; 
-  final int GAMEOVER_PAGE = 4;
+  final int GAMEOVER_PAGE = 3; 
   MenuEnviroment menu;
   GameEnviroment game;
   GameOverEnviroment gameOver;

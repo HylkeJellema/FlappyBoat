@@ -2,11 +2,13 @@ class MoneySpawner {
     int gameSpeed;
     ArrayList<Money> money;
     PirateShip ship;
+    GameEnviroment game;
   
-    MoneySpawner(int gameSpeed, PirateShip ship) {
+    MoneySpawner(int gameSpeed, PirateShip ship, GameEnviroment game) {
         this.gameSpeed = gameSpeed;
         money = new ArrayList<Money>();
         this.ship = ship;
+        this.game = game;
     }
   
     void update() {
@@ -19,6 +21,10 @@ class MoneySpawner {
             bill.update();
             if (bill.isDead()) { //removes out of bound money
                 money.remove(i);
+            }
+            if (bill.isHit()) { //removes out of bound money
+                money.remove(i);
+                game.addPoint();
             }
         }
     }

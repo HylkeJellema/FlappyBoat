@@ -2,8 +2,6 @@ class Money {
     PVector location, velocity;
     PImage billSprite;
     PirateShip ship;
-    boolean
-  
   
     Money(PirateShip ship) {
         location = new PVector(width+30, random(100, height-100));
@@ -23,6 +21,13 @@ class Money {
 
     boolean isDead(){
         if (location.x<-30){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    boolean isHit(){
+        if (dist(ship.xPos, ship.yPos, location.x, location.y)<40){
             return true;
         } else {
             return false;

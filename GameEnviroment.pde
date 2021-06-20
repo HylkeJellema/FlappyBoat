@@ -8,18 +8,25 @@ class GameEnviroment {
     float waterHeight = 650;
     int gameSpeed =5;
     int score;
+    int timer = 30;
 
     GameEnviroment(MainEnviroment mainRef){
         this.mainRef = mainRef;
         ship = new PirateShip(waterHeight,gameSpeed);
         water = new GameWater(gameSpeed);
-        monies = new MoneySpawner(gameSpeed, ship);
+        monies = new MoneySpawner(gameSpeed, ship, this);
     }
 
 
   void update() {
         ship.update();
         monies.update();
+        if (frameCount%frameRate==0){
+              timer--;
+        }
+        if (timer <=0){
+              mainRef.setState(3);
+        }
   }
 
   void render() {
