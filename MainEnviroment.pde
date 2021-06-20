@@ -13,7 +13,6 @@ class MainEnviroment {
   MainEnviroment(PApplet app) {
     this.app=app;
     state = MENU_PAGE;
-    state = GAME_PAGE;
     menu = new MenuEnviroment(this); //passing main screen as object to states can be changed.
     game = new GameEnviroment(this);
     gameOver = new GameOverEnviroment(this);
@@ -23,10 +22,10 @@ class MainEnviroment {
 
     switch (state) { //all states and there methods
 
-    //case MENU_PAGE:
-    //  menu.update(mouse);
-    //  menu.render(mouse);
-    //  break;
+    case MENU_PAGE:
+      menu.update(mouse);
+      menu.render(mouse);
+      break;
 
     case GAME_PAGE:
       game.update();
