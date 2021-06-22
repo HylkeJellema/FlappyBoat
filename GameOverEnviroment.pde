@@ -8,11 +8,11 @@ class GameOverEnviroment { //enviroment for gameover stage
   GameOverEnviroment(MainEnviroment mainRef, GameEnviroment gameEnviromentRef) {
     this.gameEnviromentRef = gameEnviromentRef;
     backgroundWater = new Movie(mainRef.getApp(), "water.mp4");
-    backgroundWater.loop();
     gameOverImage = loadImage("Gamedone.png");
   }
 
   void update() {
+    backgroundWater.loop();
   }
 
   void render() {     
