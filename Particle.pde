@@ -12,7 +12,7 @@ class Particle {
     this.state=state;
   } 
   void update() { //adds velocity to location
-    life--;
+    life-=3;
     location.add(velocity);
     location.add(gameSpeed);
   }
