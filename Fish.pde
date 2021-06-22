@@ -8,13 +8,11 @@ class Fish {
   //limits set for the fish
   float diameter, maxVelocity, maxForce;
 
-
-//constructor of the fish 
+  //constructor of the fish 
   Fish(PVector position) {
     setPosition(position); // method created to get position 
     velocity     = new PVector(random(-1, 1), random(-1, 1));
     acceleration = new PVector(0, 0);
-
     seperation   = new PVector(0, 0);
     alignment    = new PVector(0, 0);
     cohesion     = new PVector(0, 0);
@@ -23,12 +21,13 @@ class Fish {
     maxVelocity  = 1.0;
     maxForce     = 0.1;
   }
-// method running the fish's appeal, brains, and behaviour with other fish
+  // method running the fish's appeal, brains, and behaviour with other fish
   void run(ArrayList<Fish> schoolOfFish, PVector mouse) {
     flock(schoolOfFish, mouse);
     update();
     render();
   }
+
   // method running the interactiuon between fish
   void flock(ArrayList<Fish> schoolOfFish, PVector mouse) {
 
@@ -77,7 +76,7 @@ class Fish {
     return steer;
   }
 
-//the fish's behaviour 
+  //the fish's behaviour 
   void update() {
     velocity.limit(maxVelocity);
     velocity.add(acceleration);
@@ -85,7 +84,7 @@ class Fish {
     acceleration.mult(0);
   }
 
-// the fish's appearance 
+  // the fish's appearance 
   void render() {
     pushMatrix();
     translate(position.x, position.y);
@@ -197,7 +196,7 @@ class Fish {
     }
   }
 
-//position methods  
+  //position methods  
   void setPosition(PVector position) {
     this.position = position;
     //local position within the object^

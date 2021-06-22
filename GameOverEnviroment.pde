@@ -21,6 +21,6 @@ class GameOverEnviroment { //enviroment for gameover stage
     image(gameOverImage, 0, 0);
     textSize(30);
     String s ="score: " + gameEnviromentRef.score; //takes score from previous stage
-    text(s, width/2 - (textWidth(s)/2) ,height*3/4);
+    text(s, width/2 - (textWidth(s)/2), height*3/4);
   }
 }

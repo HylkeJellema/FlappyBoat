@@ -2,7 +2,7 @@ class GameWater {
   GameEnviroment game;
   GameWater wetness;
   float incline, start;
-  color waterColor = color(17,	136,	234);
+  color waterColor = color(17, 	136, 	234);
   int gameSpeed;
 
   GameWater(int gameSpeed) {

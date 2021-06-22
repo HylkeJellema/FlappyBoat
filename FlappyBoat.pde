@@ -15,7 +15,7 @@ void draw() {
 }
 
 void movieEvent(Movie m) { //for the video player
-  m.read(); 
+  m.read();
 }
 
 void mousePressed() { //mouse press pass along to main

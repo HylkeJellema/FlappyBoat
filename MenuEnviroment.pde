@@ -44,7 +44,7 @@ class MenuEnviroment {
 
   void mousePressedEvent() {
     if (hoverOver) { //goes to game when button is pressed
-      mainRef.setState(2); 
+      mainRef.setState(2);
     }
   }
 
@@ -54,15 +54,15 @@ class MenuEnviroment {
     group.render();
     image(CoverImage, 0, 0);
 
-
     if (hoverOver) { //draws button
       fill(hoverColor);
     } else {
       fill(buttonColor);
     }
     circle(buttonPos.x, buttonPos.y, buttonSize);
-    fill(0);
-    textSize(12);
-    text("Press to start", buttonPos.x-40, buttonPos.y);
+    fill(255);
+    textSize(25);
+    String s = "Start";
+    text(s, buttonPos.x-(textWidth(s)/2), buttonPos.y+10);
   }
 }

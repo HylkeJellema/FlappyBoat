@@ -35,8 +35,6 @@ class MainEnviroment {
       gameOver.update();
       gameOver.render();
       break;
-      
-      
     }
   }
 
