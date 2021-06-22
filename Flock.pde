@@ -1,5 +1,5 @@
 class Flock {
-  Fish swimmer; // object of class fish
+
   //arraylist of fish
   ArrayList<Fish> schoolOfFish;
 
